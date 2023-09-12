@@ -77,6 +77,8 @@ class ManualControl:
             "space": Action.toggle,
             "pageup": Action.pickup,
             "pagedown": Action.drop,
+            "page up": Action.pickup,
+            "page down": Action.drop,
             "tab": Action.pickup,
             "left shift": Action.drop,
             "enter": Action.done,
