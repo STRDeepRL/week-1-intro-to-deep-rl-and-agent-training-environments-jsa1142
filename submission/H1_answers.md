@@ -22,4 +22,7 @@ When the failure score is initially set to $s_f = 0.2$, it means $n_f = 7.5$. So
 
 Let's say the agent should be allowed to make 100 (or 1000) failed actions per run. Then the failure score should be set to $s_f = 0.015$ (or $s_f = 0.0015$).
 
-Check to see if learning proceeds any faster for those much-reduced failure scores.
+The image below shows the reward that results from varying the penalty for bad actions.
+The penalty values are 0.2, 0.02, 0.002, and 0.0002 for the black, blue, pink, and orange lines respectively. A penalty around 0.002 (allowing the agent to make ~750 bad actions) is good.
+
+![Varying the penalty for bad actions](varying_penalty.png)
