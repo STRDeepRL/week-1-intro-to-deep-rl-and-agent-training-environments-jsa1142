@@ -24,6 +24,6 @@ docs/_build/
 .venv
 venv
 
-# # Ignore checkpoints
-# *checkpoint_*
-# !*checkpoint_000250
+# Ignore checkpoints
+*checkpoint_*
+!*checkpoint_000250
