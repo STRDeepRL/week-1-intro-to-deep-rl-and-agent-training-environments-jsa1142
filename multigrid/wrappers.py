@@ -223,10 +223,10 @@ class CompetativeRedBlueDoorWrapper(ObservationWrapper):
         dim = sum(self.dim_sizes)
         for agent in self.env.agents:
             # Retrieve the shape of the original "image" observation_space 
-            view_height, view_width, _ = "______________"
+            view_height, view_width, _ = agent.observation_space["image"].shape
             # Reassign the "image" observation_space for one-hot encoding observations
             agent.observation_space["image"] = spaces.Box(
-                low=0, high=1, shape=("______________", "______________", "______________"), dtype=np.uint8
+                low=0, high=1, shape=(view_height, view_width, dim), dtype=np.uint8
             )
 
     def observation(self, obs: dict[AgentID, ObsType]) -> dict[AgentID, ObsType]:
@@ -237,8 +237,8 @@ class CompetativeRedBlueDoorWrapper(ObservationWrapper):
         # For each agent_id in obs, update obs[agent_id]['image'] using the self.one_hot() method and 'image' from obs[agent_id].
         # If there's a type mismatch or one of the sub-observations is out of bounds, you might encounter an error like this:
         # ValueError: The observation collected from env.reset was not contained within your env's observation space.
-        #             Its possible that there was a typemismatch (for example observations of np.float32 and a space ofnp.float64 observations),
-        #             or that one of the sub-observations wasout of bounds.
+        #             Its possible that there was a typemismatch (for example observations of np.float32 and a space of np.float64 observations),
+        #             or that one of the sub-observations was out of bounds.
         # Make sure to handle this exception and implement the correct observation to avoid it.
 
         for agent_id in obs:
@@ -247,10 +247,10 @@ class CompetativeRedBlueDoorWrapper(ObservationWrapper):
                 # If it is stacked observations from multiple agents
                 for observation in agent_observations:
                     # update the given ["image"] observation with self.one_hot() with the updated self.dim_sizes
-                    observation["image"] = self.one_hot("______________", "______________")
+                    observation["image"] = self.one_hot(observation["image"], self.dim_sizes)
             else:
                 # update the given ["image"] observation with self.one_hot() with the updated self.dim_sizes
-                agent_observations["image"] = self.one_hot("______________", "______________")
+                agent_observations["image"] = self.one_hot(agent_observations["image"], self.dim_sizes)
 
         return obs
 

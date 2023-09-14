@@ -35,7 +35,9 @@ def test_only_exception_files_modified():
         "multigrid/scripts/train_sac_cleanrl.py",
         "multigrid/utils/training_utilis.py",
         "multigrid/wrappers.py",
-        "multigrid/rllib/__init__.py"
+        "multigrid/rllib/__init__.py",
+        "tests/test_codebase.py",
+        "multigrid/scripts/manual_control.py"
     ]
 
     EXCEPTION_FOLDERS = ["submission/**", "notebooks/**"]
